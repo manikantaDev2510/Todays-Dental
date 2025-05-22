@@ -3,9 +3,9 @@ import CounterSection from "../components/CounterSection";
 import ImageCarousel from "../components/ImageCarouselSection";
 import ServicesSection from "../components/ServicesSection";
 import DoctorsSection from "../components/DoctorsSection";
-import { IntroSection } from "../components/IntroSection";
 import FadeInOnScroll from "../components/FadeInOnScroll";
 import FaqSection from "../components/FaqSection";
+import IntroSection from "../components/IntroSection";
 
 export default function Home() {
   return (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import FadeInOnScroll from "../components/FadeInOnScroll";
 
-const ContactUs = () => {
+export default function ContactUs() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -145,11 +145,10 @@ const ContactUs = () => {
           {/* Status message */}
           {statusMsg && (
             <div
-              className={`mt-3 alert ${
-                statusMsg.includes("successfully")
-                  ? "alert-success"
-                  : "alert-danger"
-              }`}
+              className={`mt-3 alert ${statusMsg.includes("successfully")
+                ? "alert-success"
+                : "alert-danger"
+                }`}
               role="alert"
             >
               {statusMsg}
@@ -174,6 +173,4 @@ const ContactUs = () => {
       </div>
     </FadeInOnScroll>
   );
-};
-
-export default ContactUs;
+}

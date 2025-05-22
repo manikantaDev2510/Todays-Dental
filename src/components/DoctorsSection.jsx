@@ -43,7 +43,8 @@ const doctors = [
     },
 ];
 
-const DoctorsSection = () => {
+
+export default function DoctorsSection() {
     return (
         <div className="container-xxl py-5">
             <div className="container">
@@ -124,5 +125,3 @@ const DoctorsSection = () => {
         </div>
     );
 };
-
-export default DoctorsSection;

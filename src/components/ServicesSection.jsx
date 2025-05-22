@@ -43,7 +43,8 @@ const services = [
   },
 ];
 
-const ServicesSection = () => {
+
+export default function ServicesSection() {
   const [selectedService, setSelectedService] = useState(null);
 
   const openModal = (service) => {
@@ -131,5 +132,3 @@ const ServicesSection = () => {
     </div>
   );
 };
-
-export default ServicesSection;

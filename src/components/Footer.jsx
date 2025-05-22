@@ -33,7 +33,7 @@ export default function Footer() {
                 { name: "Services", link: "/services" },
                 { name: "Our Team", link: "/about" },
                 { name: "Contact", link: "/contact" },
-                { name: "Book Appointment", link: "/appointments" },
+                { name: "Book Appointment", link: "/contact" },
               ].map((item, i) => (
                 <li key={i}>
                   <a
@@ -80,7 +80,7 @@ export default function Footer() {
               </a>
               . All rights reserved. Designed by{" "}
               <a
-                href="https://github.com/manikantaDev2510/Its-My-Trip"
+                href="https://github.com/manikantaDev2510/Todays-Dental"
                 target="_blank"
                 rel="noreferrer"
                 className="text-secondary"
@@ -90,11 +90,12 @@ export default function Footer() {
               </a>
             </p>
           </div>
+
           <div className="col-md-6 text-md-end">
             {["Home", "Privacy", "Help", "FAQs"].map((item, i) => (
               <a
                 key={i}
-                href={`/${item.toLowerCase()}`}
+                href="/"
                 className="text-light me-3"
                 style={{ textDecoration: "none" }}
               >

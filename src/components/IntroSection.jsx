@@ -1,6 +1,12 @@
 import React from "react";
 
-export const IntroSection = () => {
+export default function IntroSection() {
+    //   return (
+    //     <div>IntroSection</div>
+    //   )
+    // }
+
+    // export const IntroSection = () => {
     return (
         <section className="container my-5">
             <div className="text-center mb-5 animate__animated animate__fadeInDown">

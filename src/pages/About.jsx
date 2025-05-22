@@ -1,9 +1,9 @@
 import React from "react";
-import { IntroSection } from "../components/IntroSection";
 import DoctorsSection from "../components/DoctorsSection";
 import HeroSection from "../components/HeroSection";
 import TabbedSection from "../components/TabbedSection";
 import FadeInOnScroll from "../components/FadeInOnScroll";
+import IntroSection from "../components/IntroSection";
 
 export default function About() {
   return (
