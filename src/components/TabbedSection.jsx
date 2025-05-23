@@ -1,107 +1,97 @@
 import React, { useState, useEffect } from 'react';
-import { Nav, Tab, Row, Col } from 'react-bootstrap';
+import { Nav, Row, Col, Container } from 'react-bootstrap';
 import 'animate.css';
 
 export default function TabbedSection() {
-  const [activeKey, setActiveKey] = useState('whatwedo');
+  const [activeTab, setActiveTab] = useState('whatwedo');
   const [animate, setAnimate] = useState(false);
 
-  const tabData = {
+  const tabContent = {
     whatwedo: {
       title: 'We Offer High Quality Services',
       image: 'assets/abt-1.jpg',
       content: [
-        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.",
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur."
+        'We provide exceptional dental services with modern equipment and personalized care.',
+        'Your comfort and satisfaction are our top priorities.'
       ]
     },
     mission: {
       title: 'To Accommodate All Patients',
       image: 'assets/abt-2.jpg',
       content: [
-        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur."
+        'Our mission is to make dental care accessible and stress-free for everyone.',
+        'We ensure every visit is pleasant and worry-free.'
       ]
     },
     goal: {
       title: 'Help Our Customers Needs',
       image: 'assets/abt-3.jpg',
       content: [
-        "Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.",
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt voluptate, quibusdam sunt iste dolores consequatur."
+        'We aim to understand and meet each patient’s unique dental goals.',
+        'We work closely with you to create your perfect smile.'
       ]
     }
   };
 
-  const current = tabData[activeKey];
+  const { title, image, content } = tabContent[activeTab];
 
   useEffect(() => {
     setAnimate(false);
-    const timer = setTimeout(() => setAnimate(true), 10); // Re-trigger animation
+    const timer = setTimeout(() => setAnimate(true), 10);
     return () => clearTimeout(timer);
-  }, [activeKey]);
+  }, [activeTab]);
 
   return (
-    <section className="py-5">
-      <div className="container">
-        <div className="text-center animate__animated animate__fadeInUp">
-          <h5 className="section-title bg-white text-center text-primary fw-bold px-3">
-            Mission
-          </h5>
-          <h1 className="fw-bold mb-5">What We Do</h1>
+    <section className="py-5 bg-light">
+      <Container>
+        <div className="text-center mb-5 animate__animated animate__fadeInUp">
+          <h5 className="text-primary fw-bold">Mission</h5>
+          <h1 className="fw-bold">What We Do</h1>
         </div>
 
-        <Row className="d-md-flex">
-          {/* Image Column */}
-          <Col md={6} className="order-md-last d-none d-md-block p-0">
+        <Row>
+          {/* Text & Tabs */}
+          <Col md={6}>
+            <Nav
+              variant="pills"
+              activeKey={activeTab}
+              onSelect={(key) => setActiveTab(key)}
+              className="mb-4 justify-content-center justify-content-md-start"
+            >
+              <Nav.Item>
+                <Nav.Link eventKey="whatwedo">What We Do</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="mission">Our Mission</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="goal">Our Goal</Nav.Link>
+              </Nav.Item>
+            </Nav>
+
+            <div className={`animate__animated ${animate ? 'animate__fadeInLeft' : ''}`}>
+              <h3 className="mb-3">{title}</h3>
+              {content.map((text, idx) => (
+                <p key={idx}>{text}</p>
+              ))}
+            </div>
+          </Col>
+
+          {/* Image */}
+          <Col md={6} className="d-none d-md-block">
             <div
-              className={`h-100 animate__animated ${animate ? 'animate__fadeInRight' : ''
-                }`}
+              className={`h-100 animate__animated ${animate ? 'animate__fadeInRight' : ''}`}
               style={{
-                backgroundImage: `url(${current.image})`,
+                backgroundImage: `url(${image})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 minHeight: '400px',
+                borderRadius: '8px',
               }}
             />
           </Col>
-
-          {/* Text and Tabs Column */}
-          <Col md={6} className="order-md-first pr-md-5">
-            <Row>
-              <Col md={12} className="mb-4">
-                <Nav
-                  variant="pills"
-                  activeKey={activeKey}
-                  onSelect={(selectedKey) => setActiveKey(selectedKey)}
-                  className="flex-column flex-md-row"
-                >
-                  <Nav.Item>
-                    <Nav.Link eventKey="whatwedo">What we do</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="mission">Our mission</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link eventKey="goal">Our goal</Nav.Link>
-                  </Nav.Item>
-                </Nav>
-              </Col>
-              <Col md={12}>
-                <div
-                  className={`animate__animated ${animate ? 'animate__fadeInLeft' : ''
-                    }`}
-                >
-                  <h2 className="mb-4">{current.title}</h2>
-                  {current.content.map((para, index) => (
-                    <p key={index}>{para}</p>
-                  ))}
-                </div>
-              </Col>
-            </Row>
-          </Col>
         </Row>
-      </div>
+      </Container>
     </section>
   );
 }

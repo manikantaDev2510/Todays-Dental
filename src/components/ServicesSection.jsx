@@ -1,116 +1,111 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col, Card, Modal, Button } from "react-bootstrap";
 
 const services = [
   {
     icon: "bi-shield-plus text-primary",
     title: "Dental Implants",
-    desc: "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
+    desc: "Implants restore your smile and confidence with natural-looking replacements.",
   },
   {
     icon: "bi-star-fill text-warning",
     title: "Cosmetic Dentistry",
-    desc: "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
+    desc: "Enhance your teeth appearance for a brighter, more attractive smile.",
   },
   {
     icon: "bi-heart-fill text-danger",
     title: "Dental Care",
-    desc: "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
+    desc: "Routine checkups and cleaning to keep your oral health at its best.",
   },
   {
     icon: "bi-brightness-high-fill text-info",
     title: "Teeth Whitening",
-    desc: "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
+    desc: "Professional whitening for a bright and confident smile.",
   },
   {
     icon: "bi-diagram-3-fill text-success",
     title: "Dental Calculus",
-    desc: "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
+    desc: "Effective removal of tartar to prevent gum disease.",
   },
   {
     icon: "bi-diagram-2-fill text-secondary",
     title: "Periondontics",
-    desc: "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
+    desc: "Specialized gum treatments for stronger dental foundations.",
   },
   {
     icon: "bi-sliders text-dark",
     title: "Clip & Braces",
-    desc: "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
+    desc: "Align your teeth with modern and comfortable braces.",
   },
   {
     icon: "bi-gear-fill text-warning",
     title: "Root Canal",
-    desc: "Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.",
+    desc: "Save damaged teeth and relieve pain with expert root canal therapy.",
   },
 ];
 
 export default function ServicesSection() {
-  const [selectedService, setSelectedService] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [selected, setSelected] = useState(null);
+  const [show, setShow] = useState(false);
 
-  const handleOpenModal = (service) => {
-    setSelectedService(service);
-    setShowModal(true);
+  const openModal = (service) => {
+    setSelected(service);
+    setShow(true);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedService(null);
-  };
-
-  const truncateText = (text, maxLength = 60) => {
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength) + "....";
+  const closeModal = () => {
+    setShow(false);
+    setSelected(null);
   };
 
   return (
-    <div className="container-xxl py-5">
-      <div className="container">
-        <div className="text-center mb-5 animate__animated animate__fadeInUp">
-          <h5 className="section-title bg-white text-center text-primary fw-bold px-3">
-            Services
-          </h5>
-          <h1 className="fw-bold mb-3">Our Services</h1>
+    <section className="py-5 bg-light">
+      <Container>
+        <div className="text-center mb-5">
+          <h5 className="text-primary fw-bold">Services</h5>
+          <h1 className="fw-bold">Our Services</h1>
         </div>
-
-        <div className="row g-4">
+        <Row className="g-4">
           {services.map((service, index) => (
-            <div
-              className="col-lg-3 col-md-4 col-sm-6 animate__animated animate__fadeInUp"
-              key={index}
-            >
-              <div
-                className="hover-item rounded shadow-sm pt-3 bg-light h-100 border hover-shadow transition"
+            <Col key={index} xs={12} sm={6} md={4} lg={3}>
+              <Card
+                className="hover-item  text-center h-100 shadow-sm"
+                onClick={() => openModal(service)}
                 style={{ cursor: "pointer" }}
-                onClick={() => handleOpenModal(service)}
               >
-                <div className="p-4 text-center">
+                <Card.Body>
                   <i className={`bi ${service.icon} fs-1 mb-3`}></i>
-                  <h5 className="mt-3">{service.title}</h5>
-                  <p className="text-muted">{truncateText(service.desc)}</p>
-                </div>
-              </div>
-            </div>
+                  <Card.Title>{service.title}</Card.Title>
+                  <Card.Text
+                    className="text-muted"
+                    style={{ minHeight: "60px" }}
+                  >
+                    {service.desc.length > 60
+                      ? service.desc.slice(0, 60) + "..."
+                      : service.desc}
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
           ))}
-        </div>
-      </div>
+        </Row>
+      </Container>
 
       {/* Modal */}
-      <Modal show={showModal} onHide={handleCloseModal} centered>
+      <Modal show={show} onHide={closeModal} centered>
         <Modal.Header closeButton>
-          <Modal.Title>{selectedService?.title}</Modal.Title>
+          <Modal.Title>{selected?.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body className="text-center">
-          <i className={`bi ${selectedService?.icon} fs-1 mb-3`}></i>
-          <p>{selectedService?.desc}</p>
+          <i className={`bi ${selected?.icon} fs-1 mb-3`}></i>
+          <p>{selected?.desc}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
+          <Button variant="secondary" onClick={closeModal}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </section>
   );
 }

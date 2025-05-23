@@ -1,36 +1,29 @@
+import React from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
-    <nav className="navbar navbar-expand-lg shadow-sm navbar-light sticky-top bg-white px-4 py-3">
-      <div className="container-fluid d-flex justify-content-between align-items-center">
+    <Navbar bg="white" expand="lg" sticky="top" className="shadow-sm py-3">
+      <Container>
+        {/* Brand/Logo */}
+        <Navbar.Brand as={Link} to="/" className="text-primary fs-2 fw-bold">
+          Todays Dental
+        </Navbar.Brand>
 
-        <Link className="navbar-brand  text-primary fs-1 fw-bold" to="/">Todays Dental</Link>
+        {/* Toggler for mobile */}
+        <Navbar.Toggle aria-controls="navbar-nav" />
 
-        {/* Toggle button for small screens */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        {/* FIXED: Added id="navbarNav" */}
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto ">
-            <li className="nav-item mx-2"><Link className="nav-link fw-semibold fs-4 text-item" to="/">Home</Link></li>
-            <li className="nav-item mx-2"><Link className="nav-link fw-semibold fs-4" to="/about">About</Link></li>
-            <li className="nav-item mx-2"><Link className="nav-link fw-semibold fs-4" to="/services">Services</Link></li>
-            <li className="nav-item mx-2"><Link className="nav-link fw-semibold fs-4" to="/contact">Contact</Link></li>
-          </ul>
-        </div>
-
-      </div>
-    </nav>
+        {/* Collapsible Nav Links */}
+        <Navbar.Collapse id="navbar-nav">
+          <Nav className="ms-auto">
+            <Nav.Link as={Link} to="/" className="fs-5 fw-semibold">Home</Nav.Link>
+            <Nav.Link as={Link} to="/about" className="fs-5 fw-semibold">About</Nav.Link>
+            <Nav.Link as={Link} to="/services" className="fs-5 fw-semibold">Services</Nav.Link>
+            <Nav.Link as={Link} to="/contact" className="fs-5 fw-semibold">Contact</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }

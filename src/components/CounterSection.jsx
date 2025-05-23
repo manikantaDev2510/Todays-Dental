@@ -1,49 +1,47 @@
 import React, { useEffect, useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
-
-const Counter = ({ target, label, delay }) => {
+function Counter({ target, label }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let start = 0;
-    const duration = 1500;
-    const stepTime = 30;
-    const increment = target / (duration / stepTime);
+    let current = 0;
+    const duration = 1000;
+    const interval = 30;
+    const step = target / (duration / interval);
 
-    const counter = setInterval(() => {
-      start += increment;
-      if (start >= target) {
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
         setCount(target);
-        clearInterval(counter);
+        clearInterval(timer);
       } else {
-        setCount(Math.ceil(start));
+        setCount(Math.ceil(current));
       }
-    }, stepTime);
+    }, interval);
 
-    return () => clearInterval(counter);
+    return () => clearInterval(timer);
   }, [target]);
 
   return (
-    <div className="col-lg-3 animate__animated animate__fadeIn" style={{ animationDelay: delay }}>
-      <div className="d-flex align-items-center gap-3">
-        <h1 className="text-primary mb-0">{count}</h1>
-        <h5 className="text-white mb-0">{label}</h5>
-      </div>
-    </div>
+    <Col xs={12} md={6} lg={3} className="text-center mb-4">
+      <h1 className="text-primary">{count}</h1>
+      <p className="fw-semibold">{label}</p>
+    </Col>
   );
-};
+}
 
-const CounterSection = () => (
-  <section className="bg-info py-5">
-    <div className="container">
-      <div className="row text-center">
-        <Counter target={14} label="Years of Experience" delay="0.1s" />
-        <Counter target={4500} label="Qualified Dentist" delay="0.3s" />
-        <Counter target={4200} label="Happy Smiling Customer" delay="0.5s" />
-        <Counter target={320} label="Patients Per Year" delay="0.7s" />
-      </div>
-    </div>
-  </section>
-);
-
-export default CounterSection;
+export default function CounterSection() {
+  return (
+    <section className="bg-info py-3 text-white">
+      <Container>
+        <Row>
+          <Counter target={14} label="Years of Experience" />
+          <Counter target={4500} label="Qualified Dentists" />
+          <Counter target={4200} label="Happy Smiling Customers" />
+          <Counter target={320} label="Patients Per Year" />
+        </Row>
+      </Container>
+    </section>
+  );
+}
