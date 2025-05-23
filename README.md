@@ -1,6 +1,3 @@
-Sure! Here's a polished, professional, and visually appealing version of your README text, formatted with clean markdown and some added emphasis for clarity:
-
----
 
 # 🦷 Dental Clinic Website — Frontend Development Assignment
 
@@ -97,12 +94,6 @@ This project was created as part of a Front-End Development Internship assignmen
 
 ## 🌐 Live Demo
 
-Check out the live version here: [https://your-vercel-url.vercel.app](https://your-vercel-url.vercel.app)
+Check out the live version here: [https://your-vercel-url.vercel.app](https://todays-dental.vercel.app)
 
----
 
-Feel free to open issues or reach out for any questions or feedback!
-
----
-
-Let me know if you want me to help you generate the screenshot files or anything else!
