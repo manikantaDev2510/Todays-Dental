@@ -72,26 +72,6 @@ This project was created as part of a Front-End Development Internship assignmen
 
 ---
 
-## 📸 Screenshots
-
-### Home Page
-
-![Home Page](./screenshots/home-page.png)
-
-### About Us Page
-
-![About Us Page](./screenshots/about-us.png)
-
-### Services Page
-
-![Services Page](./screenshots/services-page.png)
-
-### Contact Page
-
-![Contact Page](./screenshots/contact-page.png)
-
----
-
 ## 🌐 Live Demo
 
 Check out the live version here: [https://your-vercel-url.vercel.app](https://todays-dental.vercel.app)
