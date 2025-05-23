@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link } from "react-router-dom";
 
 const doctors = [
     { name: "Rick Steves", role: "Travel Writer", image: "assets/doc-1.jpg" },

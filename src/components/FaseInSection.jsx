@@ -1,4 +1,3 @@
-// components/FadeInOnScroll.js
 import { useEffect, useRef, useState } from 'react';
 
 export default function FadeInOnScroll({ children, delay = '0s', animation = 'fadeInUp' }) {
@@ -11,7 +10,7 @@ export default function FadeInOnScroll({ children, delay = '0s', animation = 'fa
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         setIsVisible(true);
-                        observer.unobserve(entry.target); // remove to animate only once
+                        observer.unobserve(entry.target);
                     }
                 });
             },
