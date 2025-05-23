@@ -43,18 +43,16 @@ const services = [
   },
 ];
 
-
 export default function ServicesSection() {
   const [selectedService, setSelectedService] = useState(null);
 
   const openModal = (service) => {
     setSelectedService(service);
     const modalElement = document.getElementById("serviceModal");
-    const modal = new window.bootstrap.Modal(modalElement);
+    const modal = new window.bootstrap.Modal(modalElement); // Removed backdrop:false
     modal.show();
   };
 
-  // Function to limit text length and add "..."
   const truncateText = (text, maxLength = 60) => {
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength) + "....";
@@ -64,21 +62,24 @@ export default function ServicesSection() {
     <div className="container-xxl py-5">
       <div className="container">
         <div className="text-center mb-5 animate__animated animate__fadeInUp">
-          <h5 className=" section-title bg-white text-center text-primary fw-bold px-3">
+          <h5 className="section-title bg-white text-center text-primary fw-bold px-3">
             Services
           </h5>
           <h1 className="fw-bold mb-3">Our Services</h1>
         </div>
 
-        <div className="row g-4 ">
+        <div className="row g-4">
           {services.map((service, index) => (
-            <div className="col-lg-3 col-md-4 col-sm-6 animate__animated animate__fadeInUp" key={index}>
+            <div
+              className="col-lg-3 col-md-4 col-sm-6 animate__animated animate__fadeInUp"
+              key={index}
+            >
               <div
                 className="hover-item rounded shadow-sm pt-3 bg-light h-100 border hover-shadow transition"
                 style={{ cursor: "pointer" }}
                 onClick={() => openModal(service)}
               >
-                <div className=" p-4 text-center">
+                <div className="p-4 text-center">
                   <i className={`bi ${service.icon} text-primary fs-1`}></i>
                   <h5 className="mt-3">{service.title}</h5>
                   <p className="text-muted">{truncateText(service.desc)}</p>
@@ -88,47 +89,6 @@ export default function ServicesSection() {
           ))}
         </div>
       </div>
-
-      {/* Modal */}
-      <div
-        className="modal fade"
-        id="serviceModal"
-        tabIndex="-1"
-        aria-labelledby="serviceModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content bg-white shadow-lg rounded">
-            <div className="modal-header border-0">
-              <h5 className="modal-title" id="serviceModalLabel">
-                {selectedService?.title}
-              </h5>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body text-center text-dark">
-              <i
-                className={`bi ${selectedService?.icon} fs-1 mb-3`}
-                aria-hidden="true"
-              ></i>
-              <p>{selectedService?.desc}</p>
-            </div>
-            <div className="modal-footer border-0">
-              <button
-                type="button"
-                className="btn btn-outline-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
-};
+}
