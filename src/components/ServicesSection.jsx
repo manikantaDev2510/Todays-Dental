@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const services = [
   {
@@ -45,12 +47,16 @@ const services = [
 
 export default function ServicesSection() {
   const [selectedService, setSelectedService] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
-  const openModal = (service) => {
+  const handleOpenModal = (service) => {
     setSelectedService(service);
-    const modalElement = document.getElementById("serviceModal");
-    const modal = new window.bootstrap.Modal(modalElement); // Removed backdrop:false
-    modal.show();
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedService(null);
   };
 
   const truncateText = (text, maxLength = 60) => {
@@ -77,10 +83,10 @@ export default function ServicesSection() {
               <div
                 className="hover-item rounded shadow-sm pt-3 bg-light h-100 border hover-shadow transition"
                 style={{ cursor: "pointer" }}
-                onClick={() => openModal(service)}
+                onClick={() => handleOpenModal(service)}
               >
                 <div className="p-4 text-center">
-                  <i className={`bi ${service.icon} text-primary fs-1`}></i>
+                  <i className={`bi ${service.icon} fs-1 mb-3`}></i>
                   <h5 className="mt-3">{service.title}</h5>
                   <p className="text-muted">{truncateText(service.desc)}</p>
                 </div>
@@ -89,6 +95,22 @@ export default function ServicesSection() {
           ))}
         </div>
       </div>
+
+      {/* Modal */}
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedService?.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-center">
+          <i className={`bi ${selectedService?.icon} fs-1 mb-3`}></i>
+          <p>{selectedService?.desc}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
