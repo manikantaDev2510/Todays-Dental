@@ -3,7 +3,6 @@ import ServicesSection from "../components/ServicesSection";
 import HeroSection from "../components/HeroSection";
 import FadeInOnScroll from "../components/FadeInOnScroll";
 import PricingSection from "../components/PricingSection";
-import FaqSection from "../components/FaqSection";
 
 export default function Services() {
   return (
@@ -18,10 +17,6 @@ export default function Services() {
 
       <FadeInOnScroll>
         <PricingSection />
-      </FadeInOnScroll>
-
-      <FadeInOnScroll>
-        <FaqSection />
       </FadeInOnScroll>
     </div>
   );

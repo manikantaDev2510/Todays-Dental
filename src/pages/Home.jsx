@@ -4,7 +4,6 @@ import ImageCarousel from "../components/ImageCarouselSection";
 import ServicesSection from "../components/ServicesSection";
 import DoctorsSection from "../components/DoctorsSection";
 import FadeInOnScroll from "../components/FadeInOnScroll";
-import FaqSection from "../components/FaqSection";
 import IntroSection from "../components/IntroSection";
 
 export default function Home() {
@@ -28,10 +27,6 @@ export default function Home() {
 
       <FadeInOnScroll>
         <DoctorsSection />
-      </FadeInOnScroll>
-
-      <FadeInOnScroll>
-        <FaqSection />
       </FadeInOnScroll>
     </div>
   );

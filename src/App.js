@@ -1,3 +1,4 @@
+import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -7,8 +8,9 @@ import Contact from "./pages/Contact";
 import Services from "./pages/Services";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollTopButton from "./components/ScrollToTopButton";
+import FaqSection from "./components/FaqSection";
 
-function App() {
+export default function App() {
   return (
     <Router>
       <ScrollToTop />
@@ -19,9 +21,9 @@ function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      <FaqSection />
       <ScrollTopButton />
       <Footer />
     </Router>
   );
 }
-export default App;
