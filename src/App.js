@@ -1,18 +1,27 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+import ScrollTopButton from "./components/ScrollToTopButton";
+import FaqSection from "./components/FaqSection";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
-import ScrollToTop from "./components/ScrollToTop";
-import ScrollTopButton from "./components/ScrollToTopButton";
-import FaqSection from "./components/FaqSection";
+import PageNotFound from "./pages/404";
 
-export default function App() {
+function AppContent() {
+  const location = useLocation();
+
+  const isNotFoundPage =
+    location.pathname !== "/" &&
+    location.pathname !== "/about" &&
+    location.pathname !== "/services" &&
+    location.pathname !== "/contact";
+
   return (
-    <Router>
+    <>
       <ScrollToTop />
       <Header />
       <Routes>
@@ -20,10 +29,19 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/*" element={<PageNotFound />} />
       </Routes>
-      <FaqSection />
+      {!isNotFoundPage && <FaqSection />}
       <ScrollTopButton />
       <Footer />
-    </Router>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 }
